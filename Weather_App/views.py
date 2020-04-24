@@ -4,12 +4,16 @@ import urllib.request
 import requests
 def index(request):
     if request.method=='POST':
-        city=request.POST['city']
+
         # source=urllib.request.urlopen('api.openweathermap.org/data/2.5/forecast/daily?q={} &appid=879e979b983fe4687d564521b399ad47'.format(city))
-        url='http://api.openweathermap.org/data/2.5/weather?q=us &appid=879e979b983fe4687d564521b399ad47' #current weather API
-        # url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=mexico&appid=879e979b983fe4687d564521b399ad47' #5 days API
+        # url='http://api.openweathermap.org/data/2.5/weather?q={} &appid=879e979b983fe4687d564521b399ad47' #current weather API
+        # url='http://bulk.openweathermap.org/archive/city.list.json?appid=879e979b983fe4687d564521b399ad47'
+        url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q={}&appid=879e979b983fe4687d564521b399ad47' #5 days API
         # url='https://api.openweathermap.org/data/2.5/onecall?lat=60.99&lon=30.9&appid=879e979b983fe4687d564521b399ad47' #Onecall Api
-        source=requests.get(url)
+
+        # city="London"
+        city = request.POST['city']
+        source=requests.get(url.format(city))
         # print(source.text)
         # source = urllib.request.urlopen(
         #     'http://api.openweathermap.org/data/2.5/weather?q='
